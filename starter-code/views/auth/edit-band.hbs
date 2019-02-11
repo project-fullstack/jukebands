@@ -1,0 +1,17 @@
+<h2>Edit your profile</h2>
+
+<form action="/auth/profile-band/{{editUser.id}}" method="POST">
+  <input type="text" name="name" value="{{editUser.username}}">
+  <input type="text" name="contact" value="{{editUser.contact}}">
+  <input type="text" name="style" value="{{editUser.style}}" placeholder="rock, blues, pop...">
+  <textarea name="description" rows="10" cols="50" value="{{editUser.description}}" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."></textarea>
+  <input type="text" name="price" value="{{price.style}}" placeholder="3000€">
+  <input type="text" name="localization" value="{{localization.style}}" placeholder="Barcelona">
+  <input type="text" name="discography" value="{{editUser.discography}}" placeholder="insert your link to spotify">
+  <input type="text" name="rider" value="{{editUser.rider}}" placeholder="team">
+  {{!-- <label for="photo">Upload Image</label>
+    <input type="file" name="photo"> --}}
+  <button type="submit">Send</button>
+</form>
+
+<a href="/logout">Logout</a>

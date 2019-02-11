@@ -46,11 +46,18 @@ router.post("/signup-band", (req, res, next) => {
       username,
       password: hashPass,
       contact,
+      style:"",
+      description:"",
+      price: 0,
+      localization:"",
+      discography:"",
+      rider:"",
+      img:""
     });
 
     newUser.save()
     .then(() => {
-      res.redirect("/profile-band");
+      res.redirect("/auth/profile-band");
     })
     .catch(err => {
       res.render("auth/signup-band", { message: "Something went wrong" });
@@ -60,14 +67,46 @@ router.post("/signup-band", (req, res, next) => {
 
 
 router.get("/profile-band/", (req, res, next) => {
-  console.log(req.user.username)
     res.render("auth/profile-band", { user: req.user });
 });
 
+router.get('/profile-band/:id', (req, res, next) => {
+  User.findById(req.user.id)
+    .then(editUser => {
+      res.render('auth/edit-band', {editUser})
+    })
+    .catch(err => {
+      console.log(err);
+    })
+})
+
+router.post("/profile-band/:id", (req, res, next) => {
+  console.log(req.body)
+  User.findByIdAndUpdate(req.params.id, 
+    { $set: 
+      {
+      style: req.body.style,
+      description:req.body.description,
+      price: req.body.price,
+      localization: req.body.localization,
+      discography: req.body.discography,
+      rider: req.body.rider,
+      // img: req.body.img
+    }})
+
+      .then((user) =>{
+        console.log("AAA" + user)
+        res.redirect('/auth/profile-band/')
+      })
+      .catch(err => {
+        console.log(err);
+        next();
+      });
+});
 
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/");
+  res.redirect("auth/edit-band");
 });
 
 module.exports = router;

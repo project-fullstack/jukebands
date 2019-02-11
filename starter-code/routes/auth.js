@@ -1,6 +1,7 @@
 const express = require("express");
 const passport = require('passport');
 const router = express.Router();
+const uploadCloud = require('../options/cloudinary.js');
 const User = require("../models/User");
 
 // Bcrypt to encrypt passwords
@@ -46,11 +47,18 @@ router.post("/signup-band", (req, res, next) => {
       username,
       password: hashPass,
       contact,
+      style:"",
+      description:"",
+      price: 0,
+      localization:"",
+      discography:"",
+      rider:"",
+      img:""
     });
 
     newUser.save()
     .then(() => {
-      res.redirect("/profile-band");
+      res.redirect("/auth/profile-band");
     })
     .catch(err => {
       res.render("auth/signup-band", { message: "Something went wrong" });
@@ -60,14 +68,58 @@ router.post("/signup-band", (req, res, next) => {
 
 
 router.get("/profile-band/", (req, res, next) => {
-  console.log(req.user.username)
     res.render("auth/profile-band", { user: req.user });
 });
 
+router.get('/profile-band/:id', (req, res, next) => {
+  User.findById(req.user.id)
+    .then(editUser => {
+      res.render('auth/edit-band', {editUser})
+    })
+    .catch(err => {
+      console.log(err);
+    })
+})
+
+router.post("/profile-band/:id", uploadCloud.single('photo'), (req, res, next) => {
+  console.log(req.body)
+  User.findByIdAndUpdate(req.params.id, 
+    { $set: 
+      {
+      style: req.body.style,
+      description:req.body.description,
+      price: req.body.price,
+      localization: req.body.localization,
+      discography: req.body.discography,
+      rider: req.body.rider,
+      imgPath: req.file.url,
+      imgName: req.file.originalname
+    }})
+
+      .then((user) =>{
+        console.log("AAA" + user)
+        res.redirect('/auth/profile-band/')
+      })
+      .catch(err => {
+        console.log(err);
+        next();
+      });
+});
+
+router.post('/profile-band/:id/delete', (req, res, next) => {
+  User.findByIdAndRemove(req.params.id)
+      .then(() => {
+        res.redirect("/")
+      })
+      .catch(err => {
+        console.log(err);
+        next();
+  });
+})
 
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/");
+  res.redirect("auth/edit-band");
 });
 
 module.exports = router;

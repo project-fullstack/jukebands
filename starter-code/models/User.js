@@ -4,14 +4,15 @@ const Schema   = mongoose.Schema;
 const userSchema = new Schema({
   username: String,
   password: String,
+  contact: String,
   style: String,
   description: String,
   price: Number,
-  position:String,//preguntar mañana
-  contact: String,
+  localization:String,//preguntar mañana
   discography: String,
   rider: String,//equipo que tiene la banda
-  img: String
+  imgName: String,
+  imgPath: String,
 
 }, {
   timestamps: true

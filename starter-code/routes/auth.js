@@ -8,32 +8,34 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
-router.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
+router.get("/login-band/", (req, res, next) => {
+  res.render("auth/login-band", { "message": req.flash("error") });
 });
 
-router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/auth/login",
+router.post("/login-band/", passport.authenticate("local", {
+  successRedirect: "/auth/profile-band/",
+  failureRedirect: "/auth/login-band",
   failureFlash: true,
   passReqToCallback: true
 }));
 
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
+
+router.get("/signup-band", (req, res, next) => {
+  res.render("auth/signup-band");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup-band", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const contact = req.body.contact
   if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
+    res.render("auth/signup-band", { message: "Indicate username and password" });
     return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
+      res.render("auth/signup-band", { message: "The username already exists" });
       return;
     }
 
@@ -42,18 +44,26 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      contact,
     });
 
     newUser.save()
     .then(() => {
-      res.redirect("/");
+      res.redirect("/profile-band");
     })
     .catch(err => {
-      res.render("auth/signup", { message: "Something went wrong" });
+      res.render("auth/signup-band", { message: "Something went wrong" });
     })
   });
 });
+
+
+router.get("/profile-band/", (req, res, next) => {
+  console.log(req.user.username)
+    res.render("auth/profile-band", { user: req.user });
+});
+
 
 router.get("/logout", (req, res) => {
   req.logout();

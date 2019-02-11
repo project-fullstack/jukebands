@@ -11,8 +11,8 @@ const userSchema = new Schema({
   localization:String,//preguntar mañana
   discography: String,
   rider: String,//equipo que tiene la banda
-  // imgName: String,
-  // imgPath: String,
+  imgName: String,
+  imgPath: String,
 
 }, {
   timestamps: true

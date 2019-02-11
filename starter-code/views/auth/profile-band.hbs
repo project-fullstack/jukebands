@@ -1,5 +1,5 @@
 <h2>Profile</h2>
-<p>Img: {{user.img}}</p>
+<img src="{{user.imgPath}}" alt="">
 <p>Name: {{user.username}}</p>
 <p>Contact: {{user.contact}}</p>
 <p>Style of music: {{user.style}}</p>
@@ -10,4 +10,7 @@
 <p>Rider: {{user.rider}}</p>
 
 <a href="/auth/profile-band/{{user.id}}">Edit profile</a>
+<form action="/auth/profile-band/{{user.id}}/delete" method="POST">
+  <button type="submit">Delete</button>
+</form>
 <a href="/logout">Logout</a>

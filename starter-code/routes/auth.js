@@ -1,6 +1,7 @@
 const express = require("express");
 const passport = require('passport');
 const router = express.Router();
+const uploadCloud = require('../options/cloudinary.js');
 const User = require("../models/User");
 
 // Bcrypt to encrypt passwords
@@ -80,7 +81,7 @@ router.get('/profile-band/:id', (req, res, next) => {
     })
 })
 
-router.post("/profile-band/:id", (req, res, next) => {
+router.post("/profile-band/:id", uploadCloud.single('photo'), (req, res, next) => {
   console.log(req.body)
   User.findByIdAndUpdate(req.params.id, 
     { $set: 
@@ -91,7 +92,8 @@ router.post("/profile-band/:id", (req, res, next) => {
       localization: req.body.localization,
       discography: req.body.discography,
       rider: req.body.rider,
-      // img: req.body.img
+      imgPath: req.file.url,
+      imgName: req.file.originalname
     }})
 
       .then((user) =>{
@@ -103,6 +105,17 @@ router.post("/profile-band/:id", (req, res, next) => {
         next();
       });
 });
+
+router.post('/profile-band/:id/delete', (req, res, next) => {
+  User.findByIdAndRemove(req.params.id)
+      .then(() => {
+        res.redirect("/")
+      })
+      .catch(err => {
+        console.log(err);
+        next();
+  });
+})
 
 router.get("/logout", (req, res) => {
   req.logout();

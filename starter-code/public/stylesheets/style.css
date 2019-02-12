@@ -3,6 +3,13 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
+<<<<<<< HEAD
   color: #00B7FF; }
+=======
+  color: #00b7ff; }
+
+#mapid {
+  height: 400px; }
+>>>>>>> alfonso-dev
 
 /*# sourceMappingURL=style.css.map */

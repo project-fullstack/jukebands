@@ -3,7 +3,7 @@ const passport = require('passport');
 const router = express.Router();
 const uploadCloud = require('../options/cloudinary.js');
 const User = require("../models/User");
-
+const mongoose     = require('mongoose');
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
@@ -29,7 +29,8 @@ router.get("/signup-band", (req, res, next) => {
 router.post("/signup-band", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  const contact = req.body.contact
+  const contact = req.body.contact;
+  const localization = req.body.localization;
   if (username === "" || password === "") {
     res.render("auth/signup-band", { message: "Indicate username and password" });
     return;
@@ -51,7 +52,7 @@ router.post("/signup-band", (req, res, next) => {
       style:"",
       description:"",
       price: 0,
-      localization:"",
+      localization,
       discography:"",
       rider:"",
       img:""
@@ -108,7 +109,6 @@ router.post("/profile-band/:id", uploadCloud.single('photo'), (req, res, next) =
 });
 
 
-
 router.post('/profile-band/:id/delete', (req, res, next) => {
   User.findByIdAndRemove(req.params.id)
       .then(() => {
@@ -121,6 +121,10 @@ router.post('/profile-band/:id/delete', (req, res, next) => {
 })
 
 
+router.get("/search", (req, res, next) => {
+  res.render("auth/search");
+});
+
 // router.get('/allBands', (req, res, next) => {
 //   User.find()
 //     .then(user => {
@@ -131,11 +135,9 @@ router.post('/profile-band/:id/delete', (req, res, next) => {
 //     })
 // })
 
-
-
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("auth/edit-band");
+  res.redirect("/");
 });
 
 module.exports = router;

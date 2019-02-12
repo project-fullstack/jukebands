@@ -99,7 +99,6 @@ router.post("/profile-band/:id", uploadCloud.single('photo'), (req, res, next) =
     }})
 
       .then((user) =>{
-        console.log("AAA" + user)
         res.redirect('/auth/profile-band/')
       })
       .catch(err => {

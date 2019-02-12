@@ -21,6 +21,7 @@ router.post("/login-band/", passport.authenticate("local", {
 }));
 
 
+
 router.get("/signup-band", (req, res, next) => {
   res.render("auth/signup-band");
 });
@@ -67,6 +68,7 @@ router.post("/signup-band", (req, res, next) => {
 });
 
 
+
 router.get("/profile-band/", (req, res, next) => {
     res.render("auth/profile-band", { user: req.user });
 });
@@ -106,6 +108,8 @@ router.post("/profile-band/:id", uploadCloud.single('photo'), (req, res, next) =
       });
 });
 
+
+
 router.post('/profile-band/:id/delete', (req, res, next) => {
   User.findByIdAndRemove(req.params.id)
       .then(() => {
@@ -116,6 +120,19 @@ router.post('/profile-band/:id/delete', (req, res, next) => {
         next();
   });
 })
+
+
+// router.get('/allBands', (req, res, next) => {
+//   User.find()
+//     .then(user => {
+//       res.render('auth/allBands', {user})
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     })
+// })
+
+
 
 router.get("/logout", (req, res) => {
   req.logout();

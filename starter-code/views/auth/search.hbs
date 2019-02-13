@@ -4,16 +4,21 @@
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.0/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.0/mapbox-gl-geocoder.css' type='text/css' />
 
 <style>
-body { 
-  margin:0;
-  padding:0; }
-#map { 
-  position:absolute; 
-  top:150px; 
-  bottom:0; 
-  width:100%; }
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  #map {
+    position: absolute;
+    top: 150px;
+    bottom: 0;
+    width: 100%;
+  }
 </style>
 
 <div id='map'></div>
@@ -29,16 +34,16 @@ body {
   });
 
   promise.then(currentCoords => {
-mapboxgl.accessToken = 'pk.eyJ1IjoidmljYmFuIiwiYSI6ImNqczFobXl5cTFsbXI0M29jdXp6OXVqcGQifQ.YPIeCxviK0RvnP3aUa3qgg';
-var map = new mapboxgl.Map({
-container: 'map',
-style: 'mapbox://styles/mapbox/streets-v11',
-center: [currentCoords.lng, currentCoords.lat],
-zoom: 12
-  });
-
+    mapboxgl.accessToken = 'pk.eyJ1IjoidmljYmFuIiwiYSI6ImNqczFobXl5cTFsbXI0M29jdXp6OXVqcGQifQ.YPIeCxviK0RvnP3aUa3qgg';
+  var map = new mapboxgl.Map({
+    container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v11',
+  center: [currentCoords.lng, currentCoords.lat],
+  zoom: 10
+    });
+  
 var geojson = {
-  type: 'FeatureCollection',
+    type: 'FeatureCollection',
   features: [{
     type: 'Feature',
     geometry: {
@@ -52,6 +57,44 @@ var geojson = {
     .setLngLat(geojson.features[0].geometry.coordinates)
     .addTo(map);
   })
+    type: 'Point',
+  coordinates: [currentCoords.lng, currentCoords.lat]
+},
+},
+]}
+
+new mapboxgl.Marker()
+.setLngLat(geojson.features[0].geometry.coordinates)
+.addTo(map);
+
+map.addControl(new MapboxGeocoder({
+accessToken: mapboxgl.accessToken
+}));
+
+map.on('load', function() {
+map.addSource('single-point', {
+"type": "geojson",
+"data": {
+"type": "FeatureCollection",
+"features": []
+}
+});
+ 
+map.addLayer({
+"id": "point",
+"source": "single-point",
+"type": "circle",
+"paint": {
+"circle-radius": 10,
+"circle-color": "#007cbf"
+}
+});
+
+geocoder.on('result', function(ev) {
+map.getSource('single-point').setData(ev.result.geometry);
+});
+});
+ 
+})
 
 </script>
-

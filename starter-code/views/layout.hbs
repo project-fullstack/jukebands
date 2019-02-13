@@ -7,16 +7,15 @@
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-
-  <nav>
-    <a href="/">Home</a>
-    <a href="/auth/login-band">Login</a>
-    <a href="/auth/signup-band">Signup</a>
-    <a href="/auth/logout">Logout</a>
-    <a href="/auth/search/">Search</a>
-  </nav>
+  <nav class="nav align">
+  <a class="nav-link active" href="/">Home</a>
+  <a class="nav-link" href="/auth/login-band">Login</a>
+  <a class="nav-link" href="/auth/signup-band">Signup</a>
+  <a class="nav-link disabled" href="/auth/logout" tabindex="-1" aria-disabled="true">Logout</a>
+</nav>
 
   {{{body}}}
 

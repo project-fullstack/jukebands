@@ -55,7 +55,8 @@ router.post("/signup-band", (req, res, next) => {
       localization,
       discography:"",
       rider:"",
-      img:""
+      img:"",
+      place:{lat:0, lng:0}
     });
 
     newUser.save()
@@ -74,6 +75,20 @@ router.get("/profile-band/", (req, res, next) => {
     res.render("auth/profile-band", { user: req.user });
 });
 
+router.post("/profile-band/", (req, res, next) => {
+ console.log("alla vouuuuy")
+console.log( req.user.id)
+let lat= req.body.lat
+let lng= req.body.lng
+let rider="hola"
+User.findByIdAndUpdate(req.user.id, {$set:{place:{lat,lng}}},{new:true}).then(user=>{
+  console.log(user)
+
+})
+
+
+}); 
+
 router.get('/profile-band/:id', (req, res, next) => {
   User.findById(req.user.id)
     .then(editUser => {
@@ -86,6 +101,7 @@ router.get('/profile-band/:id', (req, res, next) => {
 
 router.post("/profile-band/:id", uploadCloud.single('photo'), (req, res, next) => {
   console.log(req.body)
+  
   User.findByIdAndUpdate(req.params.id, 
     { $set: 
       {
@@ -107,6 +123,8 @@ router.post("/profile-band/:id", uploadCloud.single('photo'), (req, res, next) =
         next();
       });
 });
+
+
 
 
 router.post('/profile-band/:id/delete', (req, res, next) => {

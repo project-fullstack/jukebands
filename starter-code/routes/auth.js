@@ -76,13 +76,11 @@ router.get("/profile-band/", (req, res, next) => {
 });
 
 router.post("/profile-band/", (req, res, next) => {
- console.log("alla vouuuuy")
-console.log( req.user.id)
 let lat= req.body.lat
 let lng= req.body.lng
 let rider="hola"
 User.findByIdAndUpdate(req.user.id, {$set:{place:{lat,lng}}},{new:true}).then(user=>{
-  console.log(user)
+  // console.log(user)
 
 })
 

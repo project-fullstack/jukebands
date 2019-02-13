@@ -1,5 +1,3 @@
-
-
 var promise = new Promise(function(resolve, reject) {
   navigator.geolocation.getCurrentPosition(function(position) {
     resolve(
@@ -11,8 +9,25 @@ var promise = new Promise(function(resolve, reject) {
   });
 });
 promise.then(currentCoords => {
+  const URL = `http://localhost:3000/auth/profile-band`;
+  let currentMarker;
+
   mapboxgl.accessToken =
     "pk.eyJ1IjoidmljYmFuIiwiYSI6ImNqczFobXl5cTFsbXI0M29jdXp6OXVqcGQifQ.YPIeCxviK0RvnP3aUa3qgg";
+
+  axios.get('http://localhost:3000/auth/profile-band/getCurrentMarket').then((currentmarket) => {
+  const placeUser = currentmarket.data.place;
+  console.log(placeUser)
+    //me llega lat y long?? --> si (pinto market), no (no pinto nada)
+    if (placeUser != undefined){
+      var el = document.createElement('div');
+      el.className = 'marker';
+      currentMarker = placeUser;
+    currentMarker = new mapboxgl.Marker()
+      .setLngLat(placeUser)
+      .addTo(map);
+    }
+  });
 
   var map = new mapboxgl.Map({
     container: "map",
@@ -22,15 +37,13 @@ promise.then(currentCoords => {
   });
   let clickedPos = new mapboxgl.Marker();
   map.on("click", function(e) {
-    console.log(e.lngLat);
     clickedPos.setLngLat(e.lngLat).addTo(map);
 
-    const URL = `http://localhost:3000/auth/profile-band`;
+    if (currentMarker) {
+      currentMarker.remove();
+    }
 
     axios.post(URL, e.lngLat).then(function() {
-      console.log("banda guardadada");
-      // console.log(lngLat)
-     
     });
   });
 });

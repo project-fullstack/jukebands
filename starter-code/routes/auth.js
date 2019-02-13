@@ -72,7 +72,7 @@ router.post("/signup-band", (req, res, next) => {
 
 
 router.get("/profile-band/", (req, res, next) => {
-    res.render("auth/profile-band", { user: req.user });
+  res.render("auth/profile-band", { user: req.user });
 });
 
 router.post("/profile-band/", (req, res, next) => {
@@ -86,6 +86,16 @@ User.findByIdAndUpdate(req.user.id, {$set:{place:{lat,lng}}},{new:true}).then(us
 
 
 }); 
+router.get('/profile-band/getCurrentMarket',(req,res,next)=>{
+  console.log('entroooooo')
+  //res.send(JSON.stringify({hola:'hola'}))
+  User.findById(req.user.id)
+    .then((user) => {
+      let place=user.place;
+      res.send(JSON.stringify({place}))
+      console.log(user)
+    })
+})
 
 router.get('/profile-band/:id', (req, res, next) => {
   User.findById(req.user.id)
@@ -96,9 +106,8 @@ router.get('/profile-band/:id', (req, res, next) => {
       console.log(err);
     })
 })
-
 router.post("/profile-band/:id", uploadCloud.single('photo'), (req, res, next) => {
-  console.log(req.body)
+ // console.log(req.body)
   
   User.findByIdAndUpdate(req.params.id, 
     { $set: 

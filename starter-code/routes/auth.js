@@ -125,6 +125,17 @@ router.get("/search", (req, res, next) => {
   res.render("auth/search");
 });
 
+router.get("/search/band/:id", (req, res, next) => {
+  User.findById(req.user.id)
+    .then(band => {
+      res.render("auth/band-public", {band})
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  
+});
+
 // router.get('/allBands', (req, res, next) => {
 //   User.find()
 //     .then(user => {
@@ -134,6 +145,7 @@ router.get("/search", (req, res, next) => {
 //       console.log(err);
 //     })
 // })
+
 
 router.get("/logout", (req, res) => {
   req.logout();

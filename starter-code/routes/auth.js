@@ -4,7 +4,6 @@ const router = express.Router();
 const uploadCloud = require('../options/cloudinary.js');
 const User = require("../models/User");
 const mongoose     = require('mongoose');
-// Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
@@ -78,22 +77,17 @@ router.get("/profile-band/", (req, res, next) => {
 router.post("/profile-band/", (req, res, next) => {
 let lat= req.body.lat
 let lng= req.body.lng
-let rider="hola"
 User.findByIdAndUpdate(req.user.id, {$set:{place:{lat,lng}}},{new:true}).then(user=>{
-  // console.log(user)
-
 })
 
 
 }); 
 router.get('/profile-band/getCurrentMarket',(req,res,next)=>{
-  console.log('entroooooo')
   //res.send(JSON.stringify({hola:'hola'}))
   User.findById(req.user.id)
     .then((user) => {
       let place=user.place;
       res.send(JSON.stringify({place}))
-      console.log(user)
     })
 })
 
@@ -107,7 +101,6 @@ router.get('/profile-band/:id', (req, res, next) => {
     })
 })
 router.post("/profile-band/:id", uploadCloud.single('photo'), (req, res, next) => {
- // console.log(req.body)
   
   User.findByIdAndUpdate(req.params.id, 
     { $set: 
@@ -150,15 +143,19 @@ router.get("/search", (req, res, next) => {
   res.render("auth/search");
 });
 
-// router.get('/allBands', (req, res, next) => {
-//   User.find()
-//     .then(user => {
-//       res.render('auth/allBands', {user})
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     })
-// })
+router.get("/search/bands", (req, res, next) => {
+  let usersArray = []
+  User.find()
+
+    .then((bd) => {
+      bd.forEach((user) => {
+        const places = user.place;
+        usersArray.push(user)
+        // 
+      })
+      res.send(JSON.stringify({usersArray}))
+    })
+});
 
 router.get("/logout", (req, res) => {
   req.logout();

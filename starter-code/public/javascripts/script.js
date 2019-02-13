@@ -17,8 +17,6 @@ promise.then(currentCoords => {
 
   axios.get('http://localhost:3000/auth/profile-band/getCurrentMarket').then((currentmarket) => {
   const placeUser = currentmarket.data.place;
-  console.log(placeUser)
-    //me llega lat y long?? --> si (pinto market), no (no pinto nada)
     if (placeUser != undefined){
       var el = document.createElement('div');
       el.className = 'marker';

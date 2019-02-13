@@ -1,59 +1,11 @@
 body {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00b7ff;
-  text-decoration: none;
-  transition-property: color;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
-  transition-delay: 0s;
-}
-
-.landing-half-header{
-  height: 95vh;
-  width: 50%;
-  float: left;
-}
-
-.landing-half-header-left {
-  background-color: #ededed;
-  transition: 0.5s;
-}
-
-.landing-half-header-right {
-  background-color: #dcdcdc;
-  transition: 0.5s;
-}
-
-.landing-header .landing-half-header h1 {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  width: 100%;
-  font-size: 70px;
-  text-align: center;
-  padding-top: 40vh;
-  font-weight: 400;
-  color: #2b2c34;
-  margin-top: 0px;
-  transition: 0.5s;
-}
-
-.landing-header .landing-half-header h2 {
-  width: 100%;
-  text-align: center;
-  font-weight: 100;
-  color: #2b2c34;
-  transition: 0.5s;
-}
+  color: #00b7ff; }
 
 #mapid {
-  height: 400px;
-}
+  height: 400px; }
 
 /*# sourceMappingURL=style.css.map */

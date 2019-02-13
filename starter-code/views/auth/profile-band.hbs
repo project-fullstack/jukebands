@@ -14,3 +14,28 @@
   <button type="submit">Delete</button>
 </form>
 <a href="/logout">Logout</a>
+
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+
+<style>
+body { 
+  margin:0;
+  padding:0; }
+#map { 
+  position:absolute; 
+  top:400px; 
+  bottom:0; 
+  width:40%;
+  height: 40% }
+</style>
+
+<div id='map'></div>
+
+<script>
+var bandID = "{{user.id}}"
+</script>
+
+<script src="/javascripts/script.js"></script>
+

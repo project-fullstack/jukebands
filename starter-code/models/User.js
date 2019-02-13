@@ -13,7 +13,7 @@ const userSchema = new Schema({
   rider: String,//equipo que tiene la banda
   imgName: String,
   imgPath: String,
-
+  place: Object
 }, {
   timestamps: true
 });

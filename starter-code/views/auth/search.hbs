@@ -18,7 +18,7 @@
     position: absolute;
     top: 150px;
     bottom: 0;
-    width: 200%;
+    width: 100%;
   }
 
   #geocoder-container>div {
@@ -35,9 +35,10 @@
 
 
 <script>
-
+  console.log('holi')
   var promise = new Promise(function (resolve, reject) {
     navigator.geolocation.getCurrentPosition(function (position) {
+      console.log('obtenidas posiciones', position.coords.latitude)
       resolve(pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
@@ -46,6 +47,7 @@
   });
 
   promise.then(currentCoords => {
+    console.log(currentCoords)
     mapboxgl.accessToken = 'pk.eyJ1IjoidmljYmFuIiwiYSI6ImNqczFobXl5cTFsbXI0M29jdXp6OXVqcGQifQ.YPIeCxviK0RvnP3aUa3qgg';
     var map = new mapboxgl.Map({
       container: 'map',
@@ -118,9 +120,9 @@
         }
       });
 
-      /*geocoder.on('result', function(ev) {
+      geocoder.on('result', function(ev) {
       map.getSource('single-point').setData(ev.result.geometry);
-      });*/
+      });
 
     });
   });

@@ -68,6 +68,7 @@
       axios.get("http://localhost:3000/auth/search/bands")
     .then(response => {
       response.data.usersArray.forEach(place => {
+      console.log(place)
       new mapboxgl.Marker()
         .setLngLat(place.place)
         .addTo(map);

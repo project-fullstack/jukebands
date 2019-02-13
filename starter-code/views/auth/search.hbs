@@ -5,29 +5,19 @@
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.0/mapbox-gl-geocoder.min.js'></script>
-<link rel='stylesheet'
-  href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.0/mapbox-gl-geocoder.css' type='text/css' />
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.0/mapbox-gl-geocoder.css' type='text/css' />
+  
 
 <style>
   body {
     margin: 0;
     padding: 0;
   }
-
   #map {
     position: absolute;
     top: 150px;
     bottom: 0;
-    width: 200%;
-  }
-
-  #geocoder-container>div {
-    min-width: 50%;
-    margin-left: 25%;
-  }
-
-  .mapboxgl-popup {
-    max-width: 200px;
+    width: 100%;
   }
 </style>
 
@@ -65,39 +55,15 @@
       },
       ]
     }
-
     new mapboxgl.Marker()
       .setLngLat(geojson.features[0].geometry.coordinates)
       .addTo(map);
 
-    map.addControl(new MapboxGeocoder({
+    var geocoder = map.addControl(new MapboxGeocoder({
       accessToken: mapboxgl.accessToken
     }));
 
-      axios.get("http://localhost:3000/auth/search/bands")
-    .then(response => {
-      response.data.usersArray.forEach(place => {
-      new mapboxgl.Marker()
-        .setLngLat(place.place)
-        .addTo(map);
-        let userPlaces = {
-          type: "FeatureCollection",
-          features: [
-            {
-              "type": "Feature",
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  place.place.lat,
-                  place.place.lng
-                ]
-              }
-            }]
-        };
-      })
-
-    })
-
+    map.addControl(geocoder);
 
     map.on('load', function () {
       map.addSource('single-point', {
@@ -118,11 +84,38 @@
         }
       });
 
-      /*geocoder.on('result', function(ev) {
-      map.getSource('single-point').setData(ev.result.geometry);
-      });*/
-
+      geocoder.on('result', function (ev) {
+        map.getSource('single-point').setData(ev.result.geometry);
+      });
     });
+  
+  
+
+    axios.get("http://localhost:3000/auth/search/bands")
+      .then(response => {
+        response.data.usersArray.forEach(place => {
+          new mapboxgl.Marker()
+            .setLngLat(place.place)
+            .addTo(map);
+          let userPlaces = {
+            type: "FeatureCollection",
+            features: [
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    place.place.lat,
+                    place.place.lng
+                  ]
+                }
+              }]
+          };
+        })
+
+      })
+  
+
   });
 
 </script>

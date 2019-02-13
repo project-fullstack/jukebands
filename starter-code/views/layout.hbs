@@ -7,14 +7,22 @@
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-
+  <nav class="nav">
+  <a class="nav-link active" href="/">Active</a>
+  <a class="nav-link" href="/auth/login-band">Login</a>
+  <a class="nav-link" href="#">Link</a>
+  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+</nav>
   <nav>
-    <a href="/">Home</a>
-    <a href="/auth/login-band">Login</a>
-    <a href="/auth/signup-band">Signup</a>
-    <a href="/auth/logout">Logout</a>
+    <ul class="nav">
+      <li class="nav-item"><a class="nav-item" href="/">Home</a></li>
+      <li class="nav-item"><a href="/auth/login-band">Login</a></li>
+      <li class="nav-item"><a href="/auth/signup-band">Signup</a></li>
+      <li class="nav-item"><a href="/auth/logout">Logout</a></li>
+    </ul>
   </nav>
 
   {{{body}}}

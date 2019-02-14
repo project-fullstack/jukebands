@@ -20,6 +20,7 @@
     bottom: 0;
     width: 100%;
   }
+
 </style>
 
 <div id='map'></div>
@@ -42,7 +43,7 @@
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [currentCoords.lng, currentCoords.lat],
-      zoom: 10
+      zoom: 13
     });
 
     var geojson = {
@@ -65,30 +66,38 @@
       accessToken: mapboxgl.accessToken
     }));
 
-      axios.get("http://localhost:3000/auth/search/bands")
-    .then(response => {
-      response.data.usersArray.forEach(place => {
-      console.log(place)
-      new mapboxgl.Marker()
-        .setLngLat(place.place)
-        .addTo(map);
-        let userPlaces = {
-          type: "FeatureCollection",
-          features: [
-            {
-              "type": "Feature",
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  place.place.lat,
-                  place.place.lng
-                ]
-              }
-            }]
-        };
-      })
+    axios.get("http://localhost:3000/auth/search/bands")
+      .then(response => {
+        response.data.usersArray.forEach((place, index) => {
+          new mapboxgl.Marker()
+            .setLngLat(place.place)
+            .addTo(map);
+          let userPlaces = {
+            type: "FeatureCollection",
+            features: [
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    place.place.lat,
+                    place.place.lng
+                  ]
+                }
+              }]
+          };
 
-    })
+          map.on('click', function () {
+          var popup = new mapboxgl.Popup({closeOnClick: false})
+          .setLngLat(response.data.usersArray[index].place)
+          .setHTML('<h1>Hello World!</h1>')
+          .addTo(map);
+        })
+        
+        })
+        
+
+      })
 
 
     map.on('load', function () {

@@ -5,6 +5,8 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+//HOME
+
 nav {
   display: flex;
   justify-content: flex-end;
@@ -33,21 +35,21 @@ a:hover {
   line-height: 200px;
 }
 
-.landing-half-header-left {
+.header-left {
   background: url(../images/musico.png) no-repeat;
   background-size: cover;
 }
 
-.landing-half-header-left:hover {
+.header-left:hover {
   background: rgb(14, 221, 159);
   transition: 0.5s;
 }
 
-.landing-half-header-right {
+.header-right {
   background: url(../images/promotor.png) no-repeat;
   background-size: cover;
 }
-.landing-half-header-right:hover {
+.header-right:hover {
   background: rgb(14, 221, 159);
   transition: 0.5s;
 }
@@ -70,20 +72,71 @@ a:hover {
   transition: 0.5s;
 }
 
+//Profile-band
+
 #mapid {
   height: 400px;
 }
 
 #map { 
+  top: 50px;
   display: flex;
-  z-index: 3;
   position: absolute;
   height: 400px;
   width: 400px;
+}
+
+.left-content{
+  display: flex;
+  position: absolute;
   right:150px;
   top: 150px;
   touch-action: pan-x pan-y;
 }
+
+.img-profile{
+  position: relative ;
+  display: flex;
+  align-content: center;
+}
+
+#profile-text{
+  padding-top: 30px;
+  text-align: center;
+}
+
+.profile-textName{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.profile-textLocation{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.profile-textStyle{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.profile-other{
+  text-indent: 1.5em;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1.5;
+    font: 700 1.2rem 'Roboto Slab', sans-serif;
+    padding: 1em 2em;
+    letter-spacing: 0.05rem;
+}
+
+//Login
 
 .login-page {
   background: url(../images/fondo-login.png) no-repeat;
@@ -130,6 +183,6 @@ a:hover {
 	  margin-bottom: 20px;
 	  border-top-left-radius: 0;
 	  border-top-right-radius: 0;
-	}
+  }
 }
 

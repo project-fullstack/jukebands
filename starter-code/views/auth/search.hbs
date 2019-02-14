@@ -14,7 +14,7 @@
     padding: 0;
   }
 
-  #map {
+  #mapSearch {
     position: absolute;
     top: 150px;
     bottom: 0;
@@ -23,7 +23,7 @@
 
 </style>
 
-<div id='map'></div>
+<div id='mapSearch'></div>
 
 
 <script>
@@ -40,7 +40,7 @@
   promise.then(currentCoords => {
     mapboxgl.accessToken = 'pk.eyJ1IjoidmljYmFuIiwiYSI6ImNqczFobXl5cTFsbXI0M29jdXp6OXVqcGQifQ.YPIeCxviK0RvnP3aUa3qgg';
     var map = new mapboxgl.Map({
-      container: 'map',
+      container: 'mapSearch',
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [currentCoords.lng, currentCoords.lat],
       zoom: 13
@@ -69,15 +69,15 @@
     axios.get("http://localhost:3000/auth/search/bands")
       .then(response => {
         response.data.usersArray.forEach((place, index) => {
+
         console.log(place)
 
           let newMarker = new mapboxgl.Marker()
+          /*console.log(place.id)*/
             .setLngLat(place.place)
             .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-            .setHTML(`<p>${place.username} <a href='http://www.elpais.com'>hola</a></p>`))
+            .setHTML(`<p>${place.username} <a href='http://localhost:3000/auth/search/band-info/${place._id}'>hola</a></p>`))
             .addTo(map);
-
-            
 
           let userPlaces = {
             type: "FeatureCollection",
@@ -95,33 +95,6 @@
           };
 
         })
-          //map.on('click', function (event) {
-            //console.log(event);
-          /*var popup = new mapboxgl.Popup({closeOnClick: false})
-          .setLngLat(response.data.usersArray[index].place)
-          .setHTML('<h1>Hello World!</h1>')
-          .addTo(map);
-
-          newMap.setPopup(popup)*/
-        //})
-        
-        /*
-        map.on('click', function (e) {
-          var coordinates = e.lngLat;
-          var description = 'prueba';
-          
-          // Ensure that if the map is zoomed out such that multiple
-          // copies of the feature are visible, the popup appears
-          // over the copy being pointed to.
-          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-          }
-          
-          new mapboxgl.Popup()
-          .setLngLat(coordinates)
-          .setHTML(description)
-          .addTo(map);
-          });*/
 
       })
 

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var promise = new Promise(function(resolve, reject) {
   navigator.geolocation.getCurrentPosition(function(position) {
     resolve(

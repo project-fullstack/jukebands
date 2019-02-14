@@ -27,6 +27,7 @@
 
 
 <script>
+  require('dotenv').config();
 
   var promise = new Promise(function (resolve, reject) {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -38,7 +39,7 @@
   });
 
   promise.then(currentCoords => {
-    mapboxgl.accessToken = 'pk.eyJ1IjoidmljYmFuIiwiYSI6ImNqczFobXl5cTFsbXI0M29jdXp6OXVqcGQifQ.YPIeCxviK0RvnP3aUa3qgg';
+    mapboxgl.accessToken = process.env.TOKEN;
     var map = new mapboxgl.Map({
       container: 'mapSearch',
       style: 'mapbox://styles/mapbox/streets-v11',

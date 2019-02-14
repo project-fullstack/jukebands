@@ -14,41 +14,20 @@
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.0/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.0/mapbox-gl-geocoder.css' type='text/css' />
 </div>
+
+<style>
+#map { position:absolute; top:400; bottom:0; width:30%; }
+</style>
 
 <script>
 var bandID = "{{user.id}}"
  
- var geocoder = new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken
-    });
-
-  map.addControl(geocoder);
-
-    map.on('load', function () {
-      map.addSource('single-point', {
-        "type": "geojson",
-        "data": {
-          "type": "FeatureCollection",
-          "features": []
-        }
-      });
-
-      map.addLayer({
-        "id": "point",
-        "source": "single-point",
-        "type": "circle",
-        "paint": {
-          "circle-radius": 10 ,
-          "circle-color": "black"
-        }
-      });
-
-      geocoder.on('result', function (ev) {
-        map.getSource('single-point').setData(ev.result.geometry);
-      });
-    });
-
+map.addControl(new MapboxGeocoder({
+accessToken: mapboxgl.accessToken
+}));
 
 </script>
 

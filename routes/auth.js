@@ -72,7 +72,7 @@ router.post("/signup-band", (req, res, next) => {
 
 
 router.get("/profile-band/", (req, res, next) => {
-  res.render("auth/profile-band", { user: req.user });
+  res.render("auth/profile-band", { user: req.user, key:process.env.ROUTE_HEROKU });
 });
 
 router.post("/profile-band/", (req, res, next) => {
@@ -141,7 +141,7 @@ router.post('/profile-band/:id/delete', (req, res, next) => {
 
 
 router.get("/search", (req, res, next) => {
-  res.render("auth/search");
+  res.render("auth/search", {key: process.env.ROUTE_HEROKU, token: process.env.TOKEN});
 });
 
 router.get("/search/bands", (req, res, next) => {

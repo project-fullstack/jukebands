@@ -1,4 +1,8 @@
-<h2>Map</h2>
+<div class="box">
+  <h1 class="title">Mapa</h1>
+  <p class="subtitle">Selecciona un marcador para ver más información</p>
+</div>
+
 
 
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
@@ -7,6 +11,24 @@
 
 
 <style>
+  .box {
+    position: absolute;
+    z-index: 99999;
+    max-width: 300px;
+        box-shadow: 0px 1px 6px 0px rgba(50, 50, 50, 0.2);
+    transition: all 0.4s ease-in-out;
+    padding: .8rem;
+    background: white;
+    border-radius: 10px;
+    margin: 1.5rem;
+    transition: all .2s ease-in-out
+  }
+
+  .box:hover {
+    box-shadow: 0px 1px 6px 0px rgba(50, 50, 50, 0.2);
+    transform: translateY(-4px)
+  }
+
   body {
     margin: 0;
     padding: 0;
@@ -14,7 +36,7 @@
 
   #mapSearch {
     position: absolute;
-    top: 150px;
+    top: 40px;
     bottom: 0;
     width: 100%;
     height: 70%;
@@ -51,7 +73,7 @@
 
   promise.then(currentCoords => {
     console.log(currentCoords)
-    mapboxgl.accessToken = 'pk.eyJ1IjoidmljYmFuIiwiYSI6ImNqczFobXl5cTFsbXI0M29jdXp6OXVqcGQifQ.YPIeCxviK0RvnP3aUa3qgg';
+    mapboxgl.accessToken = '{{token}}';
     var map = new mapboxgl.Map({
       container: 'mapSearch',
       style: 'mapbox://styles/mapbox/streets-v11',
@@ -66,10 +88,10 @@
       trackUserLocation: true
     }));
 
-    axios.get("http://localhost:3000/auth/search/bands")
+    axios.get("{{key}}/auth/search/bands")
       .then(response => {
         console.log(response)
-         
+
         response.data.usersArray.forEach((place, index) => {
         if (place.place === undefined)  return
         console.log(place)
@@ -78,7 +100,7 @@
           /*console.log(place.id)*/
             .setLngLat(place.place)
             .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-            .setHTML(`<p>${place.username} <a href='http://localhost:3000/auth/search/band-info/${place._id}'>hola</a></p>`))
+            .setHTML(`<p>${place.username} <a href='{{key}}/auth/search/band-info/${place._id}'>hola</a></p>`))
             .addTo(map);
 
           let userPlaces = {

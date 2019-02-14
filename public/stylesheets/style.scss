@@ -1,3 +1,5 @@
+$primary-color: #00796B;
+
 body {
   padding: 0px;
   margin: 0px;
@@ -11,7 +13,7 @@ nav {
   display: flex;
   justify-content: flex-end;
   padding-right: 50px;
-  background: rgb(14, 221, 159);
+  background: $primary-color;
   
 }
 
@@ -41,7 +43,7 @@ a:hover {
 }
 
 .header-left:hover {
-  background: rgb(14, 221, 159);
+  background: $primary-color;
   transition: 0.5s;
 }
 
@@ -50,7 +52,7 @@ a:hover {
   background-size: cover;
 }
 .header-right:hover {
-  background: rgb(14, 221, 159);
+  background: $primary-color;
   transition: 0.5s;
 }
 
@@ -72,6 +74,28 @@ a:hover {
   transition: 0.5s;
 }
 
+.form-signin {
+  box-shadow: 0px 3px 18px 0px rgba(50, 50, 50, 0.3);
+}
+
+.nav-link {
+  cursor: pointer;
+  border-bottom: 3px solid $primary-color;
+
+  &:hover {
+    color: #B2DFDB;
+    border-bottom-color: #B2DFDB;
+  }
+}
+
+
+
+.form-signin-heading {
+  text-align: center;
+  font-size: 3rem;
+  color: $primary-color;
+}
+
 //Profile-band
 
 #mapid {
@@ -81,28 +105,30 @@ a:hover {
 #map { 
   top: 50px;
   display: flex;
-  position: absolute;
   height: 400px;
   width: 400px;
 }
 
 .left-content{
   display: flex;
-  position: absolute;
   right:150px;
   top: 150px;
   touch-action: pan-x pan-y;
+  margin-bottom: 4rem;
+
 }
 
 .img-profile{
   position: relative ;
-  display: flex;
-  align-content: center;
+  margin: 0 auto;
+  display: block;
 }
 
 #profile-text{
   padding-top: 30px;
   text-align: center;
+  margin: 0 auto;
+  max-width: 700px;
 }
 
 .profile-textName{
@@ -186,3 +212,49 @@ a:hover {
   }
 }
 
+.flex-center {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  form {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+
+// BUTTONS
+.button {
+  display: inline-block;
+  margin: .5rem auto;
+  color: #ffffff;
+  background: $primary-color;
+  border-color: $primary-color;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: $primary-color;
+  cursor: pointer;
+  min-width: 220px;
+  text-align: center;
+  line-height: 2.3em ;
+  box-shadow: 0px 3px 18px 0px rgba(50, 50, 50, 0.3);
+  padding-right: 1em;
+  padding-left: 1em;
+  border-radius: 25px ;
+  transition: all .2s ease-in-out;
+
+  &.full {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  &:hover {
+    background: rgba(255,255,255,0);
+    border-color: $primary-color;
+    color: $primary-color ;
+  }
+}

@@ -1,0 +1,129 @@
+<h2>Map</h2>
+
+
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.0/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet'
+  href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.0/mapbox-gl-geocoder.css' type='text/css' />
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  #mapSearch {
+    position: absolute;
+    top: 150px;
+    bottom: 0;
+    width: 100%;
+  }
+
+</style>
+
+<div id='mapSearch'></div>
+
+
+<script>
+  require('dotenv').config();
+
+  var promise = new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      resolve(pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      })
+    })
+  });
+
+  promise.then(currentCoords => {
+    mapboxgl.accessToken = process.env.TOKEN;
+    var map = new mapboxgl.Map({
+      container: 'mapSearch',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [currentCoords.lng, currentCoords.lat],
+      zoom: 13
+    });
+
+    var geojson = {
+      type: 'FeatureCollection',
+      features: [{
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [currentCoords.lng, currentCoords.lat]
+        },
+      },
+      ]
+    }
+
+    new mapboxgl.Marker()
+      .setLngLat(geojson.features[0].geometry.coordinates)
+      .addTo(map);
+
+    map.addControl(new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken
+    }));
+
+    axios.get("http://localhost:3000/auth/search/bands")
+      .then(response => {
+        response.data.usersArray.forEach((place, index) => {
+
+        console.log(place)
+
+          let newMarker = new mapboxgl.Marker()
+          /*console.log(place.id)*/
+            .setLngLat(place.place)
+            .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(`<p>${place.username} <a href='http://localhost:3000/auth/search/band-info/${place._id}'>hola</a></p>`))
+            .addTo(map);
+
+          let userPlaces = {
+            type: "FeatureCollection",
+            features: [
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    place.place.lat,
+                    place.place.lng
+                  ]
+                }
+              }]
+          };
+
+        })
+
+      })
+
+
+    map.on('load', function () {
+      map.addSource('single-point', {
+        "type": "geojson",
+        "data": {
+          "type": "FeatureCollection",
+          "features": []
+        }
+      });
+
+      map.addLayer({
+        "id": "point",
+        "source": "single-point",
+        "type": "circle",
+        "paint": {
+          "circle-radius": 10,
+          "circle-color": "#007cbf"
+        }
+      });
+
+      /*geocoder.on('result', function(ev) {
+      map.getSource('single-point').setData(ev.result.geometry);
+      });*/
+
+    });
+  });
+
+</script>

@@ -3,13 +3,19 @@ const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
   username: String,
-  password: String
+  password: String,
+  contact: String,
+  style: String,
+  description: String,
+  price: Number,
+  localization:String,//preguntar mañana
+  discography: String,
+  rider: String,//equipo que tiene la banda
+  imgName: String,
+  imgPath: String,
+  place: Object
 }, {
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  }
+  timestamps: true
 });
-
 const User = mongoose.model('User', userSchema);
 module.exports = User;

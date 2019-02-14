@@ -15,7 +15,10 @@ const userSchema = new Schema({
   imgPath: String,
   place: Object
 }, {
-  timestamps: true
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
 });
 const User = mongoose.model('User', userSchema);
 module.exports = User;

@@ -1,0 +1,27 @@
+<h2>Profile public</h2>
+<div>
+<img src="{{user.imgPath}}" alt="">
+<p>Name: {{user.username}}</p>
+<p>Contact: {{user.contact}}</p>
+<p>Style of music: {{user.style}}</p>
+<p>Description: {{user.description}}</p>
+<p>Price: {{user.price}}</p>
+<p>Localization: {{user.localization}}</p>
+<p>Discography: {{user.discography}} </p>
+<p>Rider: {{user.rider}}</p>
+</div>
+<div id='map'>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+</div>
+
+<script>
+var bandID = "{{user.id}}"
+</script>
+
+<div>
+<a href="/logout">Logout</a>
+</div>
+
+<script src="/javascripts/script.js"></script>

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const passport = require('passport');
 const router = express.Router();
@@ -157,14 +158,14 @@ router.get("/search/bands", (req, res, next) => {
     })
 });
 
-// router.get("/search/band-info/:id", (req, res, next) => {
-//   console.log(req.user)
-//   User.findById(req.user.id)
-//   .then((user) => {
-//     res.render("auth/band-info", {user: req.user})
-//   })
+router.get("/search/band-info/:id", (req, res, next) => {
+  console.log(req.user)
+  User.findById(req.user.id)
+  .then((user) => {
+    res.render("auth/band-info", {user: req.user})
+  })
   
-// });
+});
 
 router.get("/logout", (req, res) => {
   req.logout();

@@ -61,7 +61,7 @@ router.post("/signup-band", (req, res, next) => {
 
     newUser.save()
     .then(() => {
-      res.redirect("/auth/profile-band");
+      res.redirect("/auth/login-band");
     })
     .catch(err => {
       res.render("auth/signup-band", { message: "Something went wrong" });
@@ -84,7 +84,6 @@ User.findByIdAndUpdate(req.user.id, {$set:{place:{lat,lng}}},{new:true}).then(us
 
 }); 
 router.get('/profile-band/getCurrentMarket',(req,res,next)=>{
-  //res.send(JSON.stringify({hola:'hola'}))
   User.findById(req.user.id)
     .then((user) => {
       let place=user.place;

@@ -1,25 +1,17 @@
-
-<h2>Login</h2>
-
-<form action="/auth/login-band" method="POST" id="form-container">
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
-
-  <br><br>
-
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
-  <br>
-  {{#if message }}
-    <div class="error-message">{{ message }}</div>
-  {{/if}}
-
-  <br><br>
-
-  <button>Login</button>
-
-  <p class="account-message">
-    Don't have an account yet?
-    <a href="/auth/signup-band">Signup</a>
-  </p>
-</form>
+<div class="wrapper">
+    <form class="form-signin" action="/auth/login-band" method="POST" id="form-container">       
+      <h2 class="form-signin-heading">Login</h2>
+      <input class="form-control" id="username" type="text" name="username" placeholder="JonSnow">
+      <input class="form-control" id="password" type="password"  name="password" placeholder="Password"/>      
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+      </label>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+      
+      <br>
+      <p class="account-message">
+      Don't have an account yet?
+      <a href="/auth/signup-band">Signup</a>
+    </p>
+    </form>
+  </div>

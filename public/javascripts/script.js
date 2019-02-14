@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require('dotenv').config();
 
 var promise = new Promise(function(resolve, reject) {
@@ -47,3 +48,10 @@ promise.then(currentCoords => {
     });
   });
 });
+=======
+document.addEventListener('DOMContentLoaded', () => {
+
+  console.log('IronGenerator JS imported successfully!');
+
+}, false);
+>>>>>>> 260d4c35ac0f63e85d461b8ce3bdf6d3333c53e5

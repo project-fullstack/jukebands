@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require('dotenv').config();
 const express = require("express");
 const passport = require('passport');
@@ -5,10 +6,19 @@ const router = express.Router();
 const uploadCloud = require('../options/cloudinary.js');
 const User = require("../models/User");
 const mongoose     = require('mongoose');
+=======
+const express = require("express");
+const passport = require('passport');
+const router = express.Router();
+const User = require("../models/User");
+
+// Bcrypt to encrypt passwords
+>>>>>>> 260d4c35ac0f63e85d461b8ce3bdf6d3333c53e5
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
+<<<<<<< HEAD
 router.get("/login-band/", (req, res, next) => {
   res.render("auth/login-band", { "message": req.flash("error") });
 });
@@ -16,10 +26,20 @@ router.get("/login-band/", (req, res, next) => {
 router.post("/login-band/", passport.authenticate("local", {
   successRedirect: "/auth/profile-band/",
   failureRedirect: "/auth/login-band",
+=======
+router.get("/login", (req, res, next) => {
+  res.render("auth/login", { "message": req.flash("error") });
+});
+
+router.post("/login", passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/auth/login",
+>>>>>>> 260d4c35ac0f63e85d461b8ce3bdf6d3333c53e5
   failureFlash: true,
   passReqToCallback: true
 }));
 
+<<<<<<< HEAD
 
 
 router.get("/signup-band", (req, res, next) => {
@@ -33,12 +53,27 @@ router.post("/signup-band", (req, res, next) => {
   const localization = req.body.localization;
   if (username === "" || password === "") {
     res.render("auth/signup-band", { message: "Indicate username and password" });
+=======
+router.get("/signup", (req, res, next) => {
+  res.render("auth/signup");
+});
+
+router.post("/signup", (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  if (username === "" || password === "") {
+    res.render("auth/signup", { message: "Indicate username and password" });
+>>>>>>> 260d4c35ac0f63e85d461b8ce3bdf6d3333c53e5
     return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
+<<<<<<< HEAD
       res.render("auth/signup-band", { message: "The username already exists" });
+=======
+      res.render("auth/signup", { message: "The username already exists" });
+>>>>>>> 260d4c35ac0f63e85d461b8ce3bdf6d3333c53e5
       return;
     }
 
@@ -47,6 +82,7 @@ router.post("/signup-band", (req, res, next) => {
 
     const newUser = new User({
       username,
+<<<<<<< HEAD
       password: hashPass,
       contact,
       style:"",
@@ -57,18 +93,29 @@ router.post("/signup-band", (req, res, next) => {
       rider:"",
       img:"",
       place:{lat:0, lng:0}
+=======
+      password: hashPass
+>>>>>>> 260d4c35ac0f63e85d461b8ce3bdf6d3333c53e5
     });
 
     newUser.save()
     .then(() => {
+<<<<<<< HEAD
       res.redirect("/auth/profile-band");
     })
     .catch(err => {
       res.render("auth/signup-band", { message: "Something went wrong" });
+=======
+      res.redirect("/");
+    })
+    .catch(err => {
+      res.render("auth/signup", { message: "Something went wrong" });
+>>>>>>> 260d4c35ac0f63e85d461b8ce3bdf6d3333c53e5
     })
   });
 });
 
+<<<<<<< HEAD
 
 
 router.get("/profile-band/", (req, res, next) => {
@@ -167,6 +214,8 @@ router.get("/search/band-info/:id", (req, res, next) => {
   
 });
 
+=======
+>>>>>>> 260d4c35ac0f63e85d461b8ce3bdf6d3333c53e5
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");

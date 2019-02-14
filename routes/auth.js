@@ -166,9 +166,9 @@ router.get("/search/band-info/:id", (req, res, next) => {
   
 });
 
-router.get("/logout", (req, res) => {
+router.get("/auth/logout", (req, res) => {
   req.logout();
-  res.redirect("/");
+  res.redirect("/login");
 });
 
 module.exports = router;

@@ -171,6 +171,13 @@ a:hover {
   padding-top: 180px;
 }
 
+.signup-page {
+  background: url(../images/signup.jpg) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  padding-top: 180px;
+}
+
 .form-signin {
   max-width: 380px;
   padding: 15px 35px 25px;
@@ -197,7 +204,11 @@ a:hover {
 		&:focus {
 		  z-index: 2;
 		}
-	}
+  }
+  
+  .no-bottom {
+    margin-bottom: 0px !important;
+  }
 
 	input[type="text"] {
 	  margin-bottom: -1px;

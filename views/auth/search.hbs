@@ -100,7 +100,7 @@
           /*console.log(place.id)*/
             .setLngLat(place.place)
             .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-            .setHTML(`<p>${place.username} <a href='{{key}}/auth/search/band-info/${place._id}'>hola</a></p>`))
+            .setHTML(`<p>${place.username} <br>Style:${place.style} <br>Caché:${place.price} <br><a href='{{key}}/auth/search/band-info/${place._id}'>view profile</a></p>`))
             .addTo(map);
 
           let userPlaces = {

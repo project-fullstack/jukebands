@@ -1,3 +1,28 @@
+<div>
+<img class="img-profile" src="{{user.imgPath}}" alt="">
+</div>
+<div id="profile-text">
+<p>Nombre del grupo<br><span class="profile-textName">{{user.username}}</span></p>
+<p>Ciudad<br><span class="profile-textLocation">{{user.localization}}</span></p>
+<p>Estilo<br><span class="profile-textStyle">{{user.style}}</span></p>
+<p>Descripción<br><span class="profile-other">{{user.description}}</span></p>
+
+<p>Price<br><span class="profile-other">{{user.price}}</span></p>
+<p>Rider<br><span class="profile-other">{{user.rider}}</span></p>
+
+<p>Contact<br><span class="profile-other">{{user.contact}}</span></p>
+</div>
+<script>
+var bandID = "{{user.id}}"
+</script>
+
+<div class="flex-center">
+<a class="button" href="/auth/search">Search musics</a>
+<a class="button" href="/logout">Logout</a>
+</div>
+
+{{!-- 
+
 <h2>Profile public</h2>
 <div>
 <img src="{{user.imgPath}}" alt="">
@@ -24,4 +49,4 @@ var bandID = "{{user.id}}"
 <a href="/logout">Logout</a>
 </div>
 
-<script src="/javascripts/script.js"></script>
+<script src="/javascripts/script.js"></script> --}}

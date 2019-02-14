@@ -27,14 +27,15 @@ a:hover {
 }
 
 .landing-half-header {
-  height: 95vh;
+  height: 96vh;
   width: 50%;
   float: left;
   line-height: 200px;
 }
 
 .landing-half-header-left {
-  background: url(../images/musico.png);
+  background: url(../images/musico.png) no-repeat;
+  background-size: cover;
 }
 
 .landing-half-header-left:hover {
@@ -43,7 +44,11 @@ a:hover {
 }
 
 .landing-half-header-right {
-  background-color: #dcdcdc;
+  background: url(../images/promotor.png) no-repeat;
+  background-size: cover;
+}
+.landing-half-header-right:hover {
+  background: rgb(14, 221, 159);
   transition: 0.5s;
 }
 
@@ -69,8 +74,25 @@ a:hover {
   height: 400px;
 }
 
+#map { 
+  display: flex;
+  z-index: 3;
+  position: absolute;
+  height: 400px;
+  width: 400px;
+  right:150px;
+  top: 150px;
+  touch-action: pan-x pan-y;
+}
+
+.login-page {
+  background: url(../images/fondo-login.png) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  padding-top: 180px;
+}
+
 .form-signin {
-  margin-top: 100px !important;
   max-width: 380px;
   padding: 15px 35px 25px;
   margin: 0 auto;

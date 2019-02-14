@@ -1,4 +1,5 @@
 <h2>Profile</h2>
+<div>
 <img src="{{user.imgPath}}" alt="">
 <p>Name: {{user.username}}</p>
 <p>Contact: {{user.contact}}</p>
@@ -8,32 +9,12 @@
 <p>Localization: {{user.localization}}</p>
 <p>Discography: {{user.discography}} </p>
 <p>Rider: {{user.rider}}</p>
-
-<a href="/auth/profile-band/{{user.id}}">Edit profile</a>
-<form action="/auth/profile-band/{{user.id}}/delete" method="POST">
-  <button type="submit">Delete</button>
-</form>
-<a href="/logout">Logout</a>
-
+</div>
+<div id='map'>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
-<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.0/mapbox-gl-geocoder.min.js'></script>
-<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.0/mapbox-gl-geocoder.css' type='text/css' />
-
-<style>
-body { 
-  margin:0;
-  padding:0; }
-#map { 
-  position:absolute; 
-  top:400px; 
-  bottom:0; 
-  width:40%;
-  height: 40% }
-</style>
-
-<div id='map'></div>
+</div>
 
 <script>
 var bandID = "{{user.id}}"
@@ -70,6 +51,14 @@ var bandID = "{{user.id}}"
 
 
 </script>
+
+<div>
+<a href="/auth/profile-band/{{user.id}}">Edit profile</a>
+<form action="/auth/profile-band/{{user.id}}/delete" method="POST">
+  <button type="submit">Delete</button>
+</form>
+<a href="/logout">Logout</a>
+</div>
 
 <script src="/javascripts/script.js"></script>
 

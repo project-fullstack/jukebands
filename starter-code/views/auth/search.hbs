@@ -71,9 +71,16 @@
     axios.get("http://localhost:3000/auth/search/bands")
       .then(response => {
         response.data.usersArray.forEach((place, index) => {
-          new mapboxgl.Marker()
+        console.log(place)
+
+          let newMarker = new mapboxgl.Marker()
             .setLngLat(place.place)
+            .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(`<p>${place.username} <a href='http://www.elpais.com'>hola</a></p>`))
             .addTo(map);
+
+            
+
           let userPlaces = {
             type: "FeatureCollection",
             features: [
@@ -89,15 +96,34 @@
               }]
           };
 
-          map.on('click', function () {
-          var popup = new mapboxgl.Popup({closeOnClick: false})
+        })
+          //map.on('click', function (event) {
+            //console.log(event);
+          /*var popup = new mapboxgl.Popup({closeOnClick: false})
           .setLngLat(response.data.usersArray[index].place)
           .setHTML('<h1>Hello World!</h1>')
           .addTo(map);
-        })
+
+          newMap.setPopup(popup)*/
+        //})
         
-        })
-        
+        /*
+        map.on('click', function (e) {
+          var coordinates = e.lngLat;
+          var description = 'prueba';
+          
+          // Ensure that if the map is zoomed out such that multiple
+          // copies of the feature are visible, the popup appears
+          // over the copy being pointed to.
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+          }
+          
+          new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(description)
+          .addTo(map);
+          });*/
 
       })
 

@@ -159,9 +159,9 @@ router.get("/search/bands", (req, res, next) => {
 
 router.get("/search/band-info/:id", (req, res, next) => {
   console.log(req.user)
-  User.findById(req.user.id)
+  User.findById(req.params.id)
   .then((user) => {
-    res.render("auth/band-info", {user: req.user})
+    res.render("auth/band-info", {user})
   })
   
 });

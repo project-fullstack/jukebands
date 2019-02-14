@@ -33,6 +33,45 @@ promise.then(currentCoords => {
     center: [currentCoords.lng, currentCoords.lat],
     zoom: 12
   });
+
+
+  var geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken
+  });
+
+  map.addControl(geocoder);
+
+  map.on('load', function () {
+    map.addSource('single-point', {
+      "type": "geojson",
+      "data": {
+        "type": "FeatureCollection",
+        "features": []
+      }
+    });
+
+    map.addLayer({
+      "id": "point",
+      "source": "single-point",
+      "type": "circle",
+      "paint": {
+        "circle-radius": 10,
+        "circle-color": "#007cbf"
+      }
+    });
+
+    geocoder.on('result', function (ev) {
+      map.getSource('single-point').setData(ev.result.geometry);
+    });
+  });
+
+  map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true
+    },
+    trackUserLocation: true
+  }));
+
   let clickedPos = new mapboxgl.Marker();
   map.on("click", function(e) {
     clickedPos.setLngLat(e.lngLat).addTo(map);

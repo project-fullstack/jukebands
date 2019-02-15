@@ -1,0 +1,75 @@
+
+<section class="signup-page">
+  <div class="wrapper">
+<form class="form-signin" action="/auth/signup-band" method="POST" id="form-container">
+  <h2 class="form-signin-heading">Signup</h2>
+  <label for="username">Username</label>
+  <input class="form-control" id="username" type="text" name="username" placeholder="Name">
+  <input class="form-control no-bottom" id="password" type="password"  name="password" placeholder="Password"/> 
+  {{#if message }}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <input class="form-control" id="contact" type="text" name="contact" placeholder="email">
+  <select class="form-control" name="localization" id="localization">
+    <option value="Alicante">Alicante</option>
+    <option value="Barcelona">Barcelona</option>
+    <option value="Granada">Granada</option>
+    <option value="Huelva">Huelva</option>
+    <option value="Madrid">Madrid</option>
+    <option value="Málaga">Málaga</option>
+    <option value="Mallorca">Mallorca</option>
+    <option value="La Coruña">La Coruña</option>
+    <option value="Sevilla">Sevilla</option>
+    <option value="Valencia">Valencia</option>
+    <option value="Zaragoza">Zaragoza</option>
+  </select>
+  <button class="button full" type="submit">Signup</button>
+  <p class="account-message">
+      Do you already have an account?
+      <a href="/auth/login-band">Login</a>
+    </p>
+
+  {{!-- <input id="username" type="text" name="username" placeholder="JonSnow"> --}}
+
+  {{!-- <br><br> --}}
+
+  {{!-- <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <br> --}}
+  {{!-- {{#if message }}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <br> --}}
+
+  {{!-- <label for="email">Email</label>
+  <input id="contact" type="text" name="contact" placeholder="jon@stark.com"> --}}
+
+  {{!-- <br><br> --}}
+
+  {{!-- <label for="localization">Mi localización</label>
+  <select name="localization" id="localization">
+    <option value="Alicante">Alicante</option>
+    <option value="Barcelona">Barcelona</option>
+    <option value="Granada">Granada</option>
+    <option value="Huelva">Huelva</option>
+    <option value="Madrid">Madrid</option>
+    <option value="Málaga">Málaga</option>
+    <option value="Mallorca">Mallorca</option>
+    <option value="La Coruña">La Coruña</option>
+    <option value="Sevilla">Sevilla</option>
+    <option value="Valencia">Valencia</option>
+    <option value="Zaragoza">Zaragoza</option>
+  </select> --}}
+
+  {{!-- <button>Create account</button>
+
+  <br><br> --}}
+
+  {{!-- <p class="account-message">
+    Do you already have an account?
+    <a href="/auth/login-band">Login</a>
+  </p> --}}
+</form>
+</div>
+</section>

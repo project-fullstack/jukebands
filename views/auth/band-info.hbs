@@ -1,0 +1,52 @@
+<div>
+<img class="img-profile" src="{{user.imgPath}}" alt="">
+</div>
+<div id="profile-text">
+<p>Nombre del grupo<br><span class="profile-textName">{{user.username}}</span></p>
+<p>Ciudad<br><span class="profile-textLocation">{{user.localization}}</span></p>
+<p>Estilo<br><span class="profile-textStyle">{{user.style}}</span></p>
+<p>Descripción<br><span class="profile-other">{{user.description}}</span></p>
+
+<p>Price<br><span class="profile-other">{{user.price}}</span></p>
+<p>Rider<br><span class="profile-other">{{user.rider}}</span></p>
+
+<p>Contact<br><span class="profile-other">{{user.contact}}</span></p>
+</div>
+<script>
+var bandID = "{{user.id}}"
+</script>
+
+<div class="flex-center">
+<a class="button" href="/auth/search">Search musics</a>
+<a class="button" href="/logout">Logout</a>
+</div>
+
+{{!-- 
+
+<h2>Profile public</h2>
+<div>
+<img src="{{user.imgPath}}" alt="">
+<p>Name: {{user.username}}</p>
+<p>Contact: {{user.contact}}</p>
+<p>Style of music: {{user.style}}</p>
+<p>Description: {{user.description}}</p>
+<p>Price: {{user.price}}</p>
+<p>Localization: {{user.localization}}</p>
+<p>Discography: {{user.discography}} </p>
+<p>Rider: {{user.rider}}</p>
+</div>
+<div id='map'>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+</div>
+
+<script>
+var bandID = "{{user.id}}"
+</script>
+
+<div>
+<a href="/logout">Logout</a>
+</div>
+
+<script src="/javascripts/script.js"></script> --}}

@@ -1,0 +1,209 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 50px;
+  background: #00796B; }
+
+.a-nav {
+  color: white;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+  text-decoration: none; }
+
+a:hover {
+  cursor: pointer; }
+
+.landing-half-header {
+  height: 96vh;
+  width: 50%;
+  float: left;
+  line-height: 200px; }
+
+.header-left {
+  background: url(../images/musico.png) no-repeat;
+  background-size: cover; }
+
+.header-left:hover {
+  background: #00796B;
+  transition: 0.5s; }
+
+.header-right {
+  background: url(../images/promotor.png) no-repeat;
+  background-size: cover; }
+
+.header-right:hover {
+  background: #00796B;
+  transition: 0.5s; }
+
+.landing-header .landing-half-header h1 {
+  color: white;
+  width: 100%;
+  font-size: 70px;
+  text-align: center;
+  padding-top: 35vh;
+  font-weight: 400;
+  transition: 0.5s; }
+
+.landing-header .landing-half-header h2 {
+  color: white;
+  width: 100%;
+  text-align: center;
+  font-weight: 300;
+  transition: 0.5s; }
+
+.form-signin {
+  box-shadow: 0px 3px 18px 0px rgba(50, 50, 50, 0.3); }
+
+.nav-link {
+  cursor: pointer;
+  border-bottom: 3px solid #00796B; }
+  .nav-link:hover {
+    color: #B2DFDB;
+    border-bottom-color: #B2DFDB; }
+
+.form-signin-heading {
+  text-align: center;
+  font-size: 3rem;
+  color: #00796B; }
+
+#mapid {
+  height: 400px; }
+
+#map {
+  top: 50px;
+  display: flex;
+  height: 400px;
+  width: 400px; }
+
+.left-content {
+  display: flex;
+  right: 150px;
+  top: 150px;
+  touch-action: pan-x pan-y;
+  margin-bottom: 4rem; }
+
+.img-profile {
+  position: relative;
+  margin: 0 auto;
+  display: block; }
+
+#profile-text {
+  padding-top: 30px;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 700px; }
+
+.profile-textName {
+  font-size: 30px;
+  font-weight: bold; }
+
+.profile-textLocation {
+  font-size: 25px;
+  font-weight: bold; }
+
+.profile-textStyle {
+  font-size: 20px;
+  font-weight: bold; }
+
+.profile-other {
+  text-indent: 1.5em;
+  font-size: 15px;
+  font-weight: normal; }
+
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.5;
+  font: 700 1.2rem 'Roboto Slab', sans-serif;
+  padding: 1em 2em;
+  letter-spacing: 0.05rem; }
+
+.login-page {
+  background: url(../images/fondo-login.png) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  padding-top: 180px; }
+
+.signup-page {
+  background: url(../images/signup.jpg) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  padding-top: 180px; }
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 25px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px; }
+  .form-signin .form-signin-heading,
+  .form-signin .checkbox {
+    margin-bottom: 30px; }
+  .form-signin .checkbox {
+    font-weight: normal; }
+  .form-signin .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px; }
+    .form-signin .form-control:focus {
+      z-index: 2; }
+  .form-signin .no-bottom {
+    margin-bottom: 0px !important; }
+  .form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0; }
+  .form-signin input[type="password"] {
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0; }
+
+.flex-center {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center; }
+  .flex-center form {
+    display: flex;
+    justify-content: center; }
+
+.button {
+  display: inline-block;
+  margin: .5rem auto;
+  color: #ffffff;
+  background: #00796B;
+  border-color: #00796B;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: #00796B;
+  cursor: pointer;
+  min-width: 220px;
+  text-align: center;
+  line-height: 2.3em;
+  box-shadow: 0px 3px 18px 0px rgba(50, 50, 50, 0.3);
+  padding-right: 1em;
+  padding-left: 1em;
+  border-radius: 25px;
+  transition: all .2s ease-in-out; }
+  .button.full {
+    width: 100%;
+    margin-bottom: 1.5rem; }
+  .button:hover {
+    background: rgba(255, 255, 255, 0);
+    border-color: #00796B;
+    color: #00796B; }
+
+/*# sourceMappingURL=style.css.map */

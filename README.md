@@ -14,13 +14,13 @@ Utilizar la API de Mapbox y pintar la información en el mapa.
 
 ## Tecnologías utilizadas
 
-• Javascript
-• MongoDB
-• Express
-• Passport
-• Bcrypt
-• Mapbox
-• Axios
+- Javascript
+- MongoDB
+- Express
+- Passport
+- Bcrypt
+- Mapbox
+- Axios
 
 ## Enlace
 

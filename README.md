@@ -21,6 +21,7 @@ Utilizar la API de Mapbox y pintar la información en el mapa.
 - Bcrypt
 - Mapbox
 - Axios
+- Handlebars
 
 ## Enlace
 
